@@ -8,6 +8,15 @@ function printResult(num: number){
     console.log('Result: ' + num);
 }
 
+// I'm using a callback function after my execution
+function addAndHandle(n1: number, n2: number, cb: (num: number) => void){
+    const result = n1 + n2;
+    cb(result);
+}
+addAndHandle(1, 2, (result: number) => {
+    console.log(result);
+})
+
 printResult(add(5, 12));
 
 // I'm saying that this variable is a function which returns a number and receives two numbers like parameters.
