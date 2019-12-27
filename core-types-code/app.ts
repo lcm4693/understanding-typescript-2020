@@ -1,33 +1,22 @@
-// My function accepts two arguments types (number or string)
-// It's called union type.
-function combine(
-  input1: number | string,
-  input2: number | string,
-
-  //I'm using union type combined with literal type.
-  //Here, this variable accepts only these two values.
-  resultConversion: 'as-number' | 'as-text'
-) {
-  let result;
-  if (typeof input1 === "number" && typeof input2 === "number" || resultConversion === "as-number") {
-    result = +input1 + +input2;
-  } else {
-    result = input1.toString() + input2.toString();
-  }
-
-//   if(resultConversion === 'as-number'){
-//       //Converts a string to a number
-//     return +result;
-//   }else{
-      return result.toString();
-//   }
+//It's a function with number return
+function add(n1: number, n2: number){
+    return n1 + n2;
 }
 
-const combineAges = combine(30, 26, "as-number");
-console.log(combineAges);
+//It's a function with void return
+function printResult(num: number){
+    console.log('Result: ' + num);
+}
 
-const combineStringAges = combine("30", "26", "as-number");
-console.log(combineStringAges);
+printResult(add(5, 12));
 
-const combineStrings = combine("Diego", "Serpa", "as-text");
-console.log(combineStrings);
+// I'm saying that this variable is a function which returns a number and receives two numbers like parameters.
+let combineValues: (a: number, b: number) => number;
+
+// That's ok because add function returns a number and has two parameters
+combineValues = add;
+
+// This line is not ok, because printResult is a void function and it doesn't have two parameters
+// combineValues = printResult;
+
+console.log(combineValues(8,8))
