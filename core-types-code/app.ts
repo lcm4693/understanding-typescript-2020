@@ -10,17 +10,29 @@
         
        
 //It's better to use inferition for TypeScript like the example below
-const person: {
-    name: string;
-    age: number;
-    hobbies: string[];
-    //I created below an example called tuple
-    role: [number, string]
-} = {
+// const person: {
+//     name: string;
+//     age: number;
+//     hobbies: string[];
+//     //I created below an example called tuple
+//     role: [number, string]
+// } = {
+//     name: 'Diego',
+//     age: 33,
+//     hobbies: ['Sports', 'Cooking'],
+//     role: [2, 'author']
+// };
+
+//  I can give any value for my enums. 
+enum Role {
+    ADMIN = 5, READ_ONLY, AUTHOR = 'AUTHOR'
+};
+
+const person = {
     name: 'Diego',
     age: 33,
     hobbies: ['Sports', 'Cooking'],
-    role: [2, 'author']
+    role: Role.ADMIN
 };
 
 //I can't push this value, cause it's a number and my array is composed for strings
@@ -43,5 +55,11 @@ for(const hobby of person.hobbies){
     // console.log(hobby.map()); ERROR! VSCode knows which string don't have 'map' method.
 }
 
+// These examples are using tuples
 // person.role.push('admin');
 // person.role[1] = 10;
+
+// Testing Enum type
+if(person.role === Role.ADMIN){
+    console.log('is admin');
+}
