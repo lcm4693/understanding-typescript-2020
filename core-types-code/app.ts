@@ -63,3 +63,7 @@ for(const hobby of person.hobbies){
 if(person.role === Role.ADMIN){
     console.log('is admin');
 }
+
+// When I use 'any' I can put anything in my variable. It's not good cause Typescript can't execute validation rules with it.
+let anyArray: any[];
+anyArray = ['Sports', 5, true, Role.ADMIN];
