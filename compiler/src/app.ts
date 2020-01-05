@@ -12,7 +12,9 @@ console.log(userName);
 const button = document.querySelector('button')!;
 
 function clickHandler(message: string){
+    // let nome = 'Diego';
     console.log('Clicked! ' + message);
 }
 
 button.addEventListener('click', clickHandler.bind(null, 'Teste'));
+
