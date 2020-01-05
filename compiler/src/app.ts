@@ -6,3 +6,13 @@
 const userName = 'Diego Serpa';
 
 console.log(userName);
+
+// The code below will fail, because there is a validation 'strictNullChecks',
+// but we can use the ! signal for tell to typescript that we are sure that the value won't be null.
+const button = document.querySelector('button')!;
+
+function clickHandler(message: string){
+    console.log('Clicked! ' + message);
+}
+
+button.addEventListener('click', clickHandler.bind(null, 'Teste'));
