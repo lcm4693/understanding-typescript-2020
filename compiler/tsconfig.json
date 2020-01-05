@@ -62,5 +62,22 @@
 
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
-  }
+  },
+  "exclude": [
+    // "analytics.ts" Exclui um arquivo específico
+    // "**/*.dev.ts" Exclui todos os arquivos que terminam com '.dev.ts' de qualquer pasta
+    
+    // Se não usarmos o exclude, o node, automaticamente, já exclui
+    // a pasta node_modules, porém, caso o exclude seja usado, a pasta deve ser incluída, conforme abaixo.
+    "node_modules"
+  ], "include": [
+    // Aqui devem ser incluídos todos os arquivos que devem ser compilados.
+    // Por default, todos já estão incluídos, mas caso essa propriedade esteja presente, somente os arquivos dessa lista serão compilados.
+    // "app.ts"
+    "**/*.ts"
+  ], 
+  // "files": [
+    // Funciona parecido com include, porém podemos incluir pastas, ao invés de arquivos como no include.
+  // ]
+
 }
