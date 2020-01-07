@@ -15,3 +15,13 @@ if(age > 20){
 
 // isOld variable is looked inside the 'if' above, so it's not allowed to acces it here.
 // console.log(isOld);
+
+const add = (a: number, b: number) => {
+    return a + b;
+}
+
+// If we have only one line inside the function, so we can exclude '{ }' like below:
+const multiply = (a: number, b: number) => a * b;
+
+console.log(add(5,2));
+console.log(multiply(3,2));
