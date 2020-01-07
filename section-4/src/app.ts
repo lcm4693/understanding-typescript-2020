@@ -23,5 +23,13 @@ const add = (a: number, b: number) => {
 // If we have only one line inside the function, so we can exclude '{ }' like below:
 const multiply = (a: number, b: number) => a * b;
 
+// I can define a default value, so I can call this function without the second value.
+const minus = (a: number, b: number = 1) => {
+    return a - b;
+}
+
+
 console.log(add(5,2));
 console.log(multiply(3,2));
+
+console.log(minus(3));
