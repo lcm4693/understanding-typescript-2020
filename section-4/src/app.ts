@@ -1,20 +1,17 @@
-// If I compile my application using -w I'll able to recompile automatically my code.
-// Ex: tsc app.ts -w
-// But I can create the tsconfig.json with tsc --init,
-// after that all files will be compiled using the command 'tsc'.
 
-const userName = 'Diego Serpa';
 
-console.log(userName);
+const pi = 3.14
 
-// The code below will fail, because there is a validation 'strictNullChecks',
-// but we can use the ! signal for tell to typescript that we are sure that the value won't be null.
-const button = document.querySelector('button')!;
+// It's an error, cause a constant value can't be changed.
+// pi = 5;
 
-function clickHandler(message: string){
-    // let nome = 'Diego';
-    console.log('Clicked! ' + message);
+// A variable 'let' it looks like a 'var' in vanilla javascript,
+// but in vanilla 'var' is a global variable and on typescript it is a variable limited inside the scope
+let age = 29;
+
+if(age > 20){
+    let isOld = true;
 }
 
-button.addEventListener('click', clickHandler.bind(null, 'Teste'));
-
+// isOld variable is looked inside the 'if' above, so it's not allowed to acces it here.
+// console.log(isOld);
