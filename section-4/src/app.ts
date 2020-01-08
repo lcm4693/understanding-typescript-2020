@@ -55,3 +55,18 @@ const spreadPerson = { ...person };
 person.name = "Teste";
 
 console.log(spreadPerson.name);
+
+// I can use spread operator for a variable number of parameters in a function.
+const spreadAdd =  (...numbers: number[]) => {
+
+  // Reduce is used for accumulate the values from array
+  // The callback function is called after each execution. The first value is the value returned on last loop and the seciond argument is the current value.
+  // The second argumet from reduce is the argument that will start interaction.
+  return numbers.reduce((curResult, curValue) => {
+    console.log(curResult, curValue);
+    return curResult + curValue;
+  }, 0)
+}
+
+const addedNumbers = spreadAdd(2, 3, 4, 5);
+console.log('Result: ', addedNumbers);
