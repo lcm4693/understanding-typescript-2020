@@ -5,7 +5,8 @@ class Department {
   private employees: string[] = []
 
   // Quando eu coloco os modificadores aqui no construtor, automaticamente ele cria esses atributos nas classes.
-  constructor(private name: string, private size: number) {
+  // Posso colocar uma propriedade como readonly conforme vemos o name abaixo
+  constructor(private readonly name: string, private size: number) {
     // this.name = name;
     // this.size = size;
   }
