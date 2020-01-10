@@ -1,11 +1,13 @@
 class Department {
-  private name: string;
-  private size: number;
+  // private name: string;
+  // private size: number;
+
   private employees: string[] = []
 
-  constructor(name: string, size: number) {
-    this.name = name;
-    this.size = size;
+  // Quando eu coloco os modificadores aqui no construtor, automaticamente ele cria esses atributos nas classes.
+  constructor(private name: string, private size: number) {
+    // this.name = name;
+    // this.size = size;
   }
 
   // Esse é um parâmetro burro só pra impedir que outras cópias tentem executar esse método,
