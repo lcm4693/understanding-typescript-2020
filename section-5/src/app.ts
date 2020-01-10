@@ -2,7 +2,7 @@ class Department {
   // private name: string;
   // private size: number;
 
-  private employees: string[] = []
+  private employees: string[] = [];
 
   // Quando eu coloco os modificadores aqui no construtor, automaticamente ele cria esses atributos nas classes.
   // Posso colocar uma propriedade como readonly conforme vemos o name abaixo
@@ -14,20 +14,19 @@ class Department {
   // Esse é um parâmetro burro só pra impedir que outras cópias tentem executar esse método,
   //sem ter uma instância em estado válido
   describe(this: Department) {
-    console.log("Department: " + this.name + ". Size: " + this.size);
+    console.log('Department: ' + this.name + '. Size: ' + this.size);
   }
 
-  addEmployee(employee: string){
+  addEmployee(employee: string) {
     this.employees.push(employee);
   }
 
-  printEmployeeInformation(){
-      console.log(this.employees.length, this.employees);
+  printEmployeeInformation() {
+    console.log(this.employees.length, this.employees);
   }
-
 }
 
-const departamento = new Department("Marketing", 15);
+const departamento = new Department('Marketing', 15);
 departamento.describe();
 
 // Aqui eu criei um objeto anônimo com o atributo name e o método describe
