@@ -1,5 +1,5 @@
 interface Greetable {
-    name: string;
+    readonly name: string;
     greet(phrase: string): void;
 }
 
@@ -17,5 +17,8 @@ class Person implements Greetable {
 let user: Greetable;
 
 user = new Person('Diego');
+
+// Não posso alterar o atributo name, pois ele está definido na interface como readonly.
+// user.name = '';
 
 user.greet('Hi there! I\'m');
