@@ -1,4 +1,6 @@
 class Department {
+
+  static fiscalYear = 2020;
   // private name: string;
   // private size: number;
 
@@ -9,6 +11,11 @@ class Department {
   constructor(private readonly name: string, private size: number) {
     // this.name = name;
     // this.size = size;
+  }
+
+  // Criei um método estpatico disponível para toda a classe
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   // Esse é um parâmetro burro só pra impedir que outras cópias tentem executar esse método,
@@ -27,38 +34,35 @@ class Department {
 }
 
 class ITDepartment extends Department {
-  
-  constructor(size: number, public admins: string[]){
+  constructor(size: number, public admins: string[]) {
     super('IT', size);
-
   }
 }
 
 class AccountingDepartment extends Department {
-  
   private lastReport: string;
 
-  get getLastReport(){
-    if(this.lastReport){
+  get getLastReport() {
+    if (this.lastReport) {
       return this.lastReport;
     }
     throw new Error('No report found');
   }
 
-  set setLastReport(value: string){
-    if(!value){
+  set setLastReport(value: string) {
+    if (!value) {
       throw new Error('Pass a new report value');
     }
     this.addReport(value);
   }
 
-  constructor(size: number, public reports: string[]){
+  constructor(size: number, public reports: string[]) {
     super('Accounting', size);
     this.lastReport = reports[0];
   }
 
-  addEmployee(employee: string){
-    if(employee === 'Max'){
+  addEmployee(employee: string) {
+    if (employee === 'Max') {
       return;
     }
 
@@ -66,15 +70,14 @@ class AccountingDepartment extends Department {
     this.employees.push(employee);
   }
 
-  addReport(report: string){
+  addReport(report: string) {
     this.reports.push(report);
     this.lastReport = report;
   }
 
-  getReports(){
+  getReports() {
     console.log(this.reports);
   }
-
 }
 
 const departamento = new Department('Marketing', 15);
@@ -94,6 +97,10 @@ departamento.addEmployee('Diego');
 departamento.addEmployee('Livia');
 departamento.printEmployeeInformation();
 
+const employee1 = Department.createEmployee('Geovanna');
+
+console.log('Nome: ', employee1.name);
+console.log('Fiscal Year: ', Department.fiscalYear);
 
 const itDepartment = new ITDepartment(10, ['Diego', 'Daniele']);
 
@@ -102,12 +109,14 @@ itDepartment.addEmployee('Marcos');
 itDepartment.addEmployee('Max');
 console.log(itDepartment);
 
-const accountingDepartment = new AccountingDepartment(5, ['Excel', 'Directors']);
-
+const accountingDepartment = new AccountingDepartment(5, [
+  'Excel',
+  'Directors'
+]);
 
 accountingDepartment.addReport('Teste');
 
-console.log('Last Report: ' ,accountingDepartment.getLastReport)
+console.log('Last Report: ', accountingDepartment.getLastReport);
 
 accountingDepartment.setLastReport = 'Ultimo Relatorio';
 
