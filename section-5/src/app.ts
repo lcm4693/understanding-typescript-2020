@@ -2,7 +2,7 @@ class Department {
   // private name: string;
   // private size: number;
 
-  private employees: string[] = [];
+  protected employees: string[] = [];
 
   // Quando eu coloco os modificadores aqui no construtor, automaticamente ele cria esses atributos nas classes.
   // Posso colocar uma propriedade como readonly conforme vemos o name abaixo
@@ -41,6 +41,15 @@ class AccountingDepartment extends Department {
 
   }
 
+  addEmployee(employee: string){
+    if(employee === 'Max'){
+      return;
+    }
+
+    //Tive que mudar o modificador da classe-mãe para protected para poder acessar aqui.
+    this.employees.push(employee);
+  }
+
   addReport(report: string){
     this.reports.push(report);
   }
@@ -74,8 +83,11 @@ const itDepartment = new ITDepartment(10, ['Diego', 'Daniele']);
 
 itDepartment.addEmployee('Paulo');
 itDepartment.addEmployee('Marcos');
+itDepartment.addEmployee('Max');
 console.log(itDepartment);
 
 const accountingDepartment = new AccountingDepartment(5, ['Excel', 'Directors']);
 accountingDepartment.addReport('Teste');
-accountingDepartment.getReports();
+accountingDepartment.addEmployee('John');
+accountingDepartment.addEmployee('Max');
+console.log(accountingDepartment);
