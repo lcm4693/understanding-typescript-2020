@@ -1,3 +1,4 @@
+
 interface Named {
     readonly name: string;
 }
@@ -25,3 +26,13 @@ user = new Person('Diego');
 // user.name = '';
 
 user.greet('Hi there! I\'m');
+
+// Estou criando uma interface para determinar funções.
+// Esse código comentado tem o mesmo funcionamento que o da interface.
+// type typeFunction = (a: number, b: number) => number;
+interface AddFn {
+    (a: number, b: number): number;
+}
+let addFn: AddFn = (a: number, b: number) => {
+    return a + b;
+}
