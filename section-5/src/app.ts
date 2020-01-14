@@ -45,30 +45,43 @@ class ITDepartment extends Department {
 }
 
 class AccountingDepartment extends Department {
-  describe(): void {
-    console.log('Accounting Department: ', this.name);
-  }
-  private lastReport: string;
 
+  private static instance: AccountingDepartment;
+
+  private lastReport: string;
+  
   get getLastReport() {
     if (this.lastReport) {
       return this.lastReport;
     }
     throw new Error('No report found');
   }
-
+  
   set setLastReport(value: string) {
     if (!value) {
       throw new Error('Pass a new report value');
     }
     this.addReport(value);
   }
-
-  constructor(size: number, public reports: string[]) {
+  
+  private constructor(size: number, public reports: string[]) {
     super('Accounting', size);
     this.lastReport = reports[0];
   }
+  
+  static getInstance(){
+    if(this.instance){
+      return this.instance;
+    }
+    this.instance = new AccountingDepartment(10, []);
 
+    return this.instance;
+  }
+
+  describe(): void {
+    console.log('Accounting Department: ', this.name);
+  }
+  
   addEmployee(employee: string) {
     if (employee === 'Max') {
       return;
@@ -119,10 +132,13 @@ itDepartment.addEmployee('Max');
 itDepartment.describe();
 console.log(itDepartment);
 
-const accountingDepartment = new AccountingDepartment(5, [
-  'Excel',
-  'Directors'
-]);
+//Tive que comentar quando transformei a classe em um singleton
+// const accountingDepartment = new AccountingDepartment(5, [
+//   'Excel',
+//   'Directors'
+// ]);
+
+const accountingDepartment = AccountingDepartment.getInstance();
 
 accountingDepartment.addReport('Teste');
 
