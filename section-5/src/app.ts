@@ -36,9 +36,25 @@ class ITDepartment extends Department {
 
 class AccountingDepartment extends Department {
   
+  private lastReport: string;
+
+  get getLastReport(){
+    if(this.lastReport){
+      return this.lastReport;
+    }
+    throw new Error('No report found');
+  }
+
+  set setLastReport(value: string){
+    if(!value){
+      throw new Error('Pass a new report value');
+    }
+    this.addReport(value);
+  }
+
   constructor(size: number, public reports: string[]){
     super('Accounting', size);
-
+    this.lastReport = reports[0];
   }
 
   addEmployee(employee: string){
@@ -52,6 +68,7 @@ class AccountingDepartment extends Department {
 
   addReport(report: string){
     this.reports.push(report);
+    this.lastReport = report;
   }
 
   getReports(){
@@ -59,7 +76,6 @@ class AccountingDepartment extends Department {
   }
 
 }
-
 
 const departamento = new Department('Marketing', 15);
 departamento.describe();
@@ -87,7 +103,14 @@ itDepartment.addEmployee('Max');
 console.log(itDepartment);
 
 const accountingDepartment = new AccountingDepartment(5, ['Excel', 'Directors']);
+
+
 accountingDepartment.addReport('Teste');
+
+console.log('Last Report: ' ,accountingDepartment.getLastReport)
+
+accountingDepartment.setLastReport = 'Ultimo Relatorio';
+
 accountingDepartment.addEmployee('John');
 accountingDepartment.addEmployee('Max');
 console.log(accountingDepartment);
