@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
 
   static fiscalYear = 2020;
   // private name: string;
@@ -8,7 +8,7 @@ class Department {
 
   // Quando eu coloco os modificadores aqui no construtor, automaticamente ele cria esses atributos nas classes.
   // Posso colocar uma propriedade como readonly conforme vemos o name abaixo
-  constructor(private readonly name: string, private size: number) {
+  constructor(protected readonly name: string, private size: number) {
     // this.name = name;
     // this.size = size;
   }
@@ -20,9 +20,11 @@ class Department {
 
   // Esse é um parâmetro burro só pra impedir que outras cópias tentem executar esse método,
   //sem ter uma instância em estado válido
-  describe(this: Department) {
-    console.log('Department: ' + this.name + '. Size: ' + this.size);
-  }
+  // describe(this: Department) {
+  //   console.log('Department: ' + this.name + '. Size: ' + this.size);
+  // }
+
+  abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
     this.employees.push(employee);
@@ -34,12 +36,18 @@ class Department {
 }
 
 class ITDepartment extends Department {
+  describe(): void {
+    console.log('IT Department: ', this.name);
+  }
   constructor(size: number, public admins: string[]) {
     super('IT', size);
   }
 }
 
 class AccountingDepartment extends Department {
+  describe(): void {
+    console.log('Accounting Department: ', this.name);
+  }
   private lastReport: string;
 
   get getLastReport() {
@@ -80,8 +88,9 @@ class AccountingDepartment extends Department {
   }
 }
 
-const departamento = new Department('Marketing', 15);
-departamento.describe();
+// Tive que comentar esse código quando trasnformei a classe Department em abstract
+// const departamento = new Department('Marketing', 15);
+// departamento.describe();
 
 // Aqui eu criei um objeto anônimo com o atributo name e o método describe
 // O parâmetro describe exige que a instância seja uma instância compatível com Department.
@@ -93,9 +102,9 @@ departamento.describe();
 // A propriedade name está marcada como 'private', logo não é possível acessá-la.
 // departamento.name = 'Contability';
 
-departamento.addEmployee('Diego');
-departamento.addEmployee('Livia');
-departamento.printEmployeeInformation();
+// departamento.addEmployee('Diego');
+// departamento.addEmployee('Livia');
+// departamento.printEmployeeInformation();
 
 const employee1 = Department.createEmployee('Geovanna');
 
@@ -107,6 +116,7 @@ const itDepartment = new ITDepartment(10, ['Diego', 'Daniele']);
 itDepartment.addEmployee('Paulo');
 itDepartment.addEmployee('Marcos');
 itDepartment.addEmployee('Max');
+itDepartment.describe();
 console.log(itDepartment);
 
 const accountingDepartment = new AccountingDepartment(5, [
@@ -123,3 +133,4 @@ accountingDepartment.setLastReport = 'Ultimo Relatorio';
 accountingDepartment.addEmployee('John');
 accountingDepartment.addEmployee('Max');
 console.log(accountingDepartment);
+accountingDepartment.describe();
