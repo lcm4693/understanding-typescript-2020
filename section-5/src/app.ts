@@ -26,6 +26,32 @@ class Department {
   }
 }
 
+class ITDepartment extends Department {
+  
+  constructor(size: number, public admins: string[]){
+    super('IT', size);
+
+  }
+}
+
+class AccountingDepartment extends Department {
+  
+  constructor(size: number, public reports: string[]){
+    super('Accounting', size);
+
+  }
+
+  addReport(report: string){
+    this.reports.push(report);
+  }
+
+  getReports(){
+    console.log(this.reports);
+  }
+
+}
+
+
 const departamento = new Department('Marketing', 15);
 departamento.describe();
 
@@ -42,3 +68,14 @@ departamento.describe();
 departamento.addEmployee('Diego');
 departamento.addEmployee('Livia');
 departamento.printEmployeeInformation();
+
+
+const itDepartment = new ITDepartment(10, ['Diego', 'Daniele']);
+
+itDepartment.addEmployee('Paulo');
+itDepartment.addEmployee('Marcos');
+console.log(itDepartment);
+
+const accountingDepartment = new AccountingDepartment(5, ['Excel', 'Directors']);
+accountingDepartment.addReport('Teste');
+accountingDepartment.getReports();
