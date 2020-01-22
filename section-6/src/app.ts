@@ -150,3 +150,13 @@ const errorBag: ErrorContainer = {
   email: 'Not a valid mail',
   username: 'Must start with a capital character!'
 }
+
+const objeto = {
+    id: '1',
+    name: 'Nome',
+    job: {id: '1', descricao: 'Trabalho Legal'},
+}
+// Delete the job attribute in my 'objeto'
+delete objeto.job;
+// Here, I'm telling the job attribute like optional. It'll return undefined because job isn't in my objeto.
+console.log(objeto.job?.descricao);
