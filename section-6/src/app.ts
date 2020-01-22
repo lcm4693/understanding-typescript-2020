@@ -26,13 +26,28 @@ type Numeric = number | boolean;
 // In this case, it will be a numeric variable, cause there is number type on these two variables.
 type Universal = Combinable & Numeric;
 
+
+// I'm overloading the add method. I can use this for tell to Typescript the true return type.
+// It's important when we are using the multiples return types.
+function add(a: number, b: number): number;
+function add(a: number, b: string): string;
+function add(a: string, b: number): string;
+function add(a: string, b: string): string;
 function add(a: Combinable, b: Combinable) {
   if (typeof a === 'string' || typeof b === 'string') {
-    return a.toString() + b.toString();
+    return a.toString()+ ' ' + b.toString();
   }
 
   return a + b;
 }
+
+// Typescript knows that the line below will return a string, because I overloaded my method.
+const concatena = add('Diego', 'Serpa');
+console.log(concatena);
+
+// Typescript knows that the line below will return a number, because I overloaded my method.
+const somaNumeros = add(1, 4);
+console.log(somaNumeros);
 
 type UnknownEmployee = Employee | Admin;
 
