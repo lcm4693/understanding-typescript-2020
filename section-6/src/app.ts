@@ -122,3 +122,16 @@ moveAnimal({type: 'horse', runningSpeed: 10});
 // const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
 const userInputElement = document.getElementById('user-input')! as HTMLInputElement;
 userInputElement.value = 'Hi dude';
+
+// I'm creating an interface for keep my errors, but I don't know the fields which I'll use at development time,
+// so I can create an index propertie which I tell to Typescript the field's type without the name
+interface ErrorContainer {
+  [prop: string]: string;
+}
+
+// Here, I'm using the ErrorContainer for keep my runtime errors. I've defined the properties with string value,
+// so I can use, in this example, email and username fields.
+const errorBag: ErrorContainer = {
+  email: 'Not a valid mail',
+  username: 'Must start with a capital character!'
+}
