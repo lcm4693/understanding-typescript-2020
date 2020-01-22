@@ -116,3 +116,9 @@ function moveAnimal (animal: Animal){
 
 moveAnimal({type: 'bird', flyingSpeed: 5});
 moveAnimal({type: 'horse', runningSpeed: 10});
+
+// When I put '!' after a command, so I'm telling for typescript that there will be a valid value in this line (not-null)
+// After that, I convert for HTMLInputElement using '< >' or using 'as' keyword
+// const userInputElement = <HTMLInputElement>document.getElementById('user-input')!;
+const userInputElement = document.getElementById('user-input')! as HTMLInputElement;
+userInputElement.value = 'Hi dude';
