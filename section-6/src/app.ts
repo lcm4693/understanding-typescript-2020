@@ -160,3 +160,21 @@ const objeto = {
 delete objeto.job;
 // Here, I'm telling the job attribute like optional. It'll return undefined because job isn't in my objeto.
 console.log(objeto.job?.descricao);
+
+
+const userInputUndefined = undefined;
+const userInputEmpty = '';
+
+// When I use the ?? operator, so the value considered it's only undefined.
+// In this case below, the result will be 'DEFAULT'
+const result1 = userInputUndefined ?? 'DEFAULT';
+
+// In this case below, the result will be 'DEFAULT', because '' is considered empty like undefined
+const result2 = userInputEmpty || 'DEFAULT';
+
+// In this case below, the result will be '', because ?? operator consideres only true if the variable is undefined
+const result3 = userInputEmpty ?? 'DEFAULT';
+
+console.log(result1);
+console.log(result2);
+console.log(result3);
