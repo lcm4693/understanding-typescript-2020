@@ -54,3 +54,48 @@ function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U){
 
 // If I change the second parameter to 'age', so Typescript warns me that there is an error in my sintax.
 console.log(extractAndConvert({name: 'Diego'}, 'name'));
+
+class DataStorage<T extends string | number | boolean> {
+  private data: T[] = [];
+
+  addItem(item: T){
+    this.data.push(item);
+  }
+
+  removeItem(item: T){
+    if(this.data.indexOf(item) === -1){
+      // If I can't find my object, so I have to do nothing
+      return;
+    }
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+
+  getItens(){
+    return this.data;
+  }
+}
+
+const teste = new DataStorage<string>();
+teste.addItem('Diego');
+teste.addItem('Daniele');
+console.log(teste.getItens());
+teste.addItem('Lívia');
+
+// I can't put a number type inside this array, cause I declared my DataStorage as an array composed by strings.
+// teste.addItem(10);
+
+teste.removeItem('Diego');
+console.log(teste.getItens());
+
+const numberOrString = new DataStorage<number | string>();
+numberOrString.addItem('Diego');
+numberOrString.addItem('Lívia');
+
+// I can put a number type inside this array, cause my DataStorage is the union between string and number
+numberOrString.addItem(10);
+
+numberOrString.addItem(1.56);
+
+numberOrString.removeItem('Diego');
+
+console.log(numberOrString.getItens());
