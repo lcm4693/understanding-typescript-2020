@@ -46,3 +46,11 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
 
 // It works cause string type has a length propertie.
 console.log(countAndDescribe('Hi there'));
+
+// I'm telling to Typescript that I have to pass a valid key which exists inside my object from T type.
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U){
+  return 'Value of: ' + obj[key];
+}
+
+// If I change the second parameter to 'age', so Typescript warns me that there is an error in my sintax.
+console.log(extractAndConvert({name: 'Diego'}, 'name'));
