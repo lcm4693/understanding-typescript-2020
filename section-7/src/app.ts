@@ -99,3 +99,30 @@ numberOrString.addItem(1.56);
 numberOrString.removeItem('Diego');
 
 console.log(numberOrString.getItens());
+
+interface CourseGoal {
+  title: string,
+  description: string,
+  completedUntil: Date,
+}
+
+function createCoruseGoal(title: string, description: string, completedUntil: Date): CourseGoal{
+
+  // When I define a variable as Partial, so I can fill the attributes later. 
+  // I started with an empty object and I'll fill all the object in this function
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completedUntil = completedUntil;
+
+  // Here I converted my Partial entity to CourseGoal.
+  return courseGoal as CourseGoal;
+}
+
+console.log(createCoruseGoal('Título', 'Descrição', new Date()));
+
+
+const nomes: Readonly<string[]> = ['Diego', 'Lívia'];
+// This function below isn't valid, because my type is Readonly and not a true array.
+// nomes.push()
+console.log(nomes);
